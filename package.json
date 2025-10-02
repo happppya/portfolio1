@@ -2,27 +2,30 @@
   "name": "asdf",
   "version": "1.0.0",
   "description": "desc.",
-  "keywords": ["interaction", "pointer-events"],
+  "keywords": [
+    "interaction",
+    "pointer-events"
+  ],
   "main": "src/index.jsx",
   "dependencies": {
-    "@react-three/drei": "9.92.0",
-    "@react-three/fiber": "8.15.12",
+    "@react-three/drei": "10.7.6",
+    "@react-three/fiber": "9.3.0",
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/rapier": "^1.5.0",
-    "react": "18.2.0",
     "leva": "^0.10.0",
-    "react-dom": "^18.3.1",
-    "postprocessing": "^6.37.8",
+    "react": "19.2.0",
+    "react-dom": "^19.2.0",
     "react-scripts": "5.0.1",
-    "three": "^0.170.0"
+    "three": "^0.180.0",
+    "postprocessing" : "^6.37.8"
   },
   "devDependencies": {
-    "@types/node": "^22.7.5",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.2",
+    "@types/node": "^24.6.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^4.3.2",
-    "typescript": "^5.6.3",
-    "vite": "^5.4.20"
+    "typescript": "^5.9.3",
+    "vite": "^7.1.8"
   },
   "scripts": {
     "start": "",
@@ -31,5 +34,10 @@
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
-  "browserslist": [">1%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">1%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
