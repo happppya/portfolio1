@@ -24,7 +24,22 @@ const Workspace = () => (
 
 const Overlay = () => (
   <div className="overlay">
-    <h2>test</h2>
+
+    <div class="corner">
+      <h2>HAPPYA</h2>
+      <p>FULL STACK DEVELOPER</p>
+      <p>something</p>
+      <br/>
+      <h3>projects</h3>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-btn">Home</button>
+      <button class="nav-btn">About</button>
+      <button class="nav-btn">Services</button>
+      <button class="nav-btn">Contact</button>
+    </nav>
+
   </div>
 )
 
