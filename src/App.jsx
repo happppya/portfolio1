@@ -28,9 +28,7 @@ const Overlay = () => (
     <div class="corner">
       <h2>HAPPYA</h2>
       <p>FULL STACK DEVELOPER</p>
-      <p>something</p>
-      <br/>
-      <h3>projects</h3>
+      <p>& GAME DESIGNER</p>
     </div>
 
     <nav class="nav">
