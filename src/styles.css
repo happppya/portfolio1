@@ -10,6 +10,21 @@
   left: 50%; /* center horizontally */
   transform: translate(-50%, -50%); /* actually center the element */
   pointer-events: none; /* optional: allows clicking through the overlay */
+  padding: 20px;
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  src: url("fonts/Inconsolata.ttf");
+}
+
+@font-face {
+  font-family: "NunitoSans";
+  src: url("fonts/NunitoSans.ttf");
+}
+
+h1, h2, h3, h4, p {
+  color: white;
 }
 
 html,
