@@ -42,8 +42,9 @@ const Overlay = () => (
 )
 
 export default function App() {
+
   const { debug } = useControls({ debug: false })
-  const playerRef = useRef()
+  const orbitRef = useRef();
 
   const keyboardMap = [
     { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -75,9 +76,19 @@ export default function App() {
             <Sky />
             <Physics debug={debug} colliders={false} gravity = {[0,-20,0]}>
               <Workspace />
-              <Player />
+              <Player orbitRef={orbitRef} />
             </Physics>
-            <OrbitControls />
+            <OrbitControls
+              ref = {orbitRef}
+              enableRotate={true}
+              enablePan={false}
+              enableZoom={false}
+              minPolarAngle={Math.PI / 6}  // optional tilt limits
+              maxPolarAngle={Math.PI / 2}
+              rotateSpeed={2}
+              autoRotate={false}
+
+            />
           </Suspense>
         </Canvas>
 
