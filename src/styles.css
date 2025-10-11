@@ -54,7 +54,6 @@
 
 .nav-btn:hover {
   background: rgb(0, 0, 0);
-  border-color: rgb(0, 0, 0);
 }
 
 .corner {
@@ -68,6 +67,13 @@ h1, h2, h3, h4, p, button {
   color: white;
   font-family: 'Inconsolata';
   font-weight: normal;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard syntax */
 }
 
 h1 {

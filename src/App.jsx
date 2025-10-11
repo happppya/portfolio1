@@ -32,7 +32,7 @@ const Overlay = () => (
     </div>
 
     <nav className="nav">
-      <button className="nav-btn">Home</button>
+      <button className="nav-btn">Explore</button>
       <button className="nav-btn">About</button>
       <button className="nav-btn">Services</button>
       <button className="nav-btn">Contact</button>
