@@ -1,108 +1,122 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .overlay {
-  position: absolute; /* relative to the parent div */
-  width: 100%;
-  height: 100%;
-  top: 50%; /* center vertically */
-  left: 50%; /* center horizontally */
-  transform: translate(-50%, -50%); /* actually center the element */
-  pointer-events: none; /* optional: allows clicking through the overlay */
-  padding: 40px;
+    position: absolute;
+    /* relative to the parent div */
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    /* center vertically */
+    left: 50%;
+    /* center horizontally */
+    transform: translate(-50%, -50%);
+    /* actually center the element */
+    pointer-events: none;
+    /* optional: allows clicking through the overlay */
+    padding: 40px;
 }
-
 @font-face {
-  font-family: "Inconsolata";
-  src: url("fonts/Inconsolata.ttf");
+    font-family: "Inconsolata";
+    src: url("fonts/Inconsolata.ttf");
 }
-
 @font-face {
-  font-family: "NunitoSans";
-  src: url("fonts/NunitoSans.ttf");
+    font-family: "NunitoSans";
+    src: url("fonts/NunitoSans.ttf");
 }
 
-.nav, .nav-btn {
-  pointer-events: auto;
+.nav,
+.nav-btn {
+    pointer-events: auto;
 }
 
 .nav {
-  position: absolute;   
-  top: 40px;
-  left: 0;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  display: flex;  
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  z-index: 1000;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1000;
 }
 
 .nav-btn {
-  background: transparent;
-  color: white;
-  border: 1px solid transparent;
-  padding: 0.5rem 1rem;
-  border-radius: 100px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.2s ease, border-color 0.2s ease;
-  font-weight: bold;
+    background: transparent;
+    color: white;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    font-weight: bold;
 }
-
 .nav-btn:hover {
-  background: rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
 }
 
 .corner {
-  position: absolute;
-  z-index: 50;
+    position: absolute;
+    z-index: 50;
 }
 
-h1, h2, h3, h4, p, button {
-  margin: 0px;
-  padding: 0px;
-  color: white;
-  font-family: 'Inconsolata';
-  font-weight: normal;
+button,
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Inconsolata';
+    font-weight: normal;
 
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Standard syntax */
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Standard syntax */
 }
 
 h1 {
-  font-size: clamp(1.5rem, 5vw, 3rem);
+    font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 h2 {
-  font-size: clamp(1rem, 5vw, 5rem);
-  font-weight: bold;
+    font-size: clamp(1rem, 5vw, 5rem);
+    font-weight: bold;
 }
 
 h3 {
-  font-size: clamp(0.6rem, 1.8vw, 1.8rem);
-  font-weight: bold;
+    font-size: clamp(0.6rem, 1.8vw, 1.8rem);
+    font-weight: bold;
 }
 
 p {
-  font-size: clamp(0.5rem, 1.4vw, 1.4rem);
+    font-size: clamp(0.5rem, 1.4vw, 1.4rem);
 }
 
-html,
+#root,
 body,
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background: #f0f0f0;
+    background: #f0f0f0;
 }

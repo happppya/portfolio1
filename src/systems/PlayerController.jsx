@@ -1,20 +1,28 @@
 import {useRef} from 'react'
 import {RigidBody} from '@react-three/rapier'
-import {useFrame} from '@react-three/fiber'
+import {useFrame, useLoader} from '@react-three/fiber'
 import * as THREE from 'three'
-import {useKeyboardControls} from '@react-three/drei'
+import {useFBX, useKeyboardControls} from '@react-three/drei'
 import {getByteBoundaryFromType} from 'three/src/nodes/core/NodeUtils.js'
 import {useEffect} from 'react'
 import {clamp, lerp} from 'three/src/math/MathUtils.js'
 import {useState} from 'react'
 
 const Character = () => {
-    return (
-        <mesh castShadow>
-            <boxGeometry args={[1, 1, 1]}/>
-            <meshStandardMaterial color="blue"/>
-        </mesh>
-    )
+
+    const pearto = useFBX('models/pearto.fbx')
+
+    const box = new THREE
+        .Box3()
+        .setFromObject(pearto);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    console.log('Model size:', size);
+
+    pearto.rotation.y = Math.PI / 2;
+
+    return (<primitive object={pearto} scale={0.017}/>)
+
 }
 
 export function Player({orbitRef}) {
@@ -30,6 +38,8 @@ export function Player({orbitRef}) {
     const acceleration = 0.2;
     const jumpPower = 10;
     const onGround = useRef(true);
+
+    const walkTime = useRef(0);
 
     const [,
         getInput] = useKeyboardControls();
@@ -67,17 +77,21 @@ export function Player({orbitRef}) {
             .Vector3()
             .subVectors(position, lastPosition);
         positionDelta.y = 0;
+        const movementDelta = positionDelta.lengthSq() > 0.01;
+
+        const currentInput = getInput();
+        const isInputtingWalk = (currentInput.left || currentInput.right || currentInput.forward || currentInput.backward);
 
         lastPosition = position;
 
         // movement
-        const inputMovementVector = new THREE.Vector3((getInput().right
+        const inputMovementVector = new THREE.Vector3((currentInput.right
             ? 1
-            : 0) + (getInput().left
+            : 0) + (currentInput.left
             ? -1
-            : 0), 0, (getInput().backward
+            : 0), 0, (currentInput.backward
             ? 1
-            : 0) + (getInput().forward
+            : 0) + (currentInput.forward
             ? -1
             : 0));
 
@@ -88,7 +102,7 @@ export function Player({orbitRef}) {
 
         let newYVelocity = currentCharacterVelocity.y;
 
-        if (getInput().jump && onGround.current) { // jumping
+        if (currentInput.jump && onGround.current) { // jumping
             newYVelocity = jumpPower;
         }
 
@@ -100,9 +114,10 @@ export function Player({orbitRef}) {
 
         body.setLinvel(newCharacterVelocity, true);
 
-        // rotation
+        if (movementDelta > 0.01 && onGround) {
 
-        if (positionDelta.lengthSq() > 0.01) {
+            // rotation
+
             positionDelta.normalize();
 
             const targetRotation = new THREE.Quaternion();
@@ -117,11 +132,28 @@ export function Player({orbitRef}) {
 
             body.setRotation(newCharacterRotation);
 
+            // proc walk animation
+
+        }
+        
+        let bob;
+        let tilt;
+
+        if (isInputtingWalk && onGround.current) {
+            walkTime.current += delta;
+            bob = Math.sin(walkTime.current * 50) * 0.1;
+            tilt = Math.sin(walkTime.current * 25) * 0.1;
+        } else {
+            bob = 0;
+            tilt = 0;
         }
 
+        bob -= 0.32;
+
+        character.current.position.y = bob;
+        character.current.rotation.z = tilt;
         // camera
 
-        
         orbitControls
             .target
             .lerp(position, dampedAlpha);
@@ -132,7 +164,7 @@ export function Player({orbitRef}) {
             .add(offset);
 
         orbitControls.update();
-        
+
         offset.subVectors(camera.position, orbitControls.target);
 
         // debug
@@ -151,7 +183,7 @@ export function Player({orbitRef}) {
             mass={5}
             restitution={0}
             friction={0}
-            position={[0, 5, 0]}
+            position={[0, 8, 0]}
             onCollisionEnter={(e) => {
             if (e.other.rigidBodyObject
                 ?.name == "ground") {
