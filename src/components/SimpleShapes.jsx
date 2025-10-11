@@ -11,11 +11,22 @@ export function Baseplate() {
   texture_gridGray.repeat.set(256, 256)
 
   return (
-    <RigidBody colliders="trimesh" type="fixed">
+    <RigidBody colliders="trimesh" type="fixed" name="ground">
       <Cylinder size={[256, 256, 2]} rotation={[0, 0, 0]} position={[0, 0, 0]} color="#87f274" texture={texture_gridGray} />
     </RigidBody>
   )
 }
+
+export const RectCollider = ({ size, ...props }) => (
+
+  <RigidBody colliders="cuboid" type="fixed" name="ground">
+    <mesh castShadow receiveShadow {...props}>
+      <boxGeometry args={size} />
+      <meshStandardMaterial color="white" />
+    </mesh>
+  </RigidBody>
+  
+)
 
 export const Rect = ({ size, ...props }) => (
   <mesh castShadow receiveShadow {...props}>
