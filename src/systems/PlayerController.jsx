@@ -23,7 +23,7 @@ export function Player({orbitRef}) {
   const character = useRef();
 
   const offset = new THREE.Vector3(-5,10,0);
-  const dampingSpeed = 10;
+  const dampingSpeed = 20;
 
   const speed = 12;
   const acceleration = 0.2;
@@ -119,18 +119,16 @@ export function Player({orbitRef}) {
     // debug
 
     if (ticks%30 == 0) {
-      console.log(positionDelta);
+      
     }
 
   })
-
-  
 
   return (
     <RigidBody 
     ref={rigidBody} 
     type="dynamic" 
-    colliders="cuboid" mass={1} restitution={0} friction={0} position={[0, 5, 0]}>
+    colliders="cuboid" mass={5} restitution={0} friction={0} position={[0, 5, 0]}>
       <group ref={container}>
         <group ref={character}>
           <Character/>
