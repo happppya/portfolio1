@@ -1,0 +1,9 @@
+.fade-up {
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease-out forwards;
+}
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+    }
+}

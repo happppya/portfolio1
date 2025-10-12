@@ -185,9 +185,7 @@ export function Player({orbitRef}) {
         // debug
 
         if (ticks % 30 == 0) {
-            //console.log(currentCharacterVelocity.y)
-            //          console.log(totalTime, )
-            console.log(lastTrailEffectTime.current)
+            
         }
 
     })

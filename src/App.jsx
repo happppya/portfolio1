@@ -20,7 +20,7 @@ import {BlendFunction} from 'postprocessing'
 import {Player} from './systems/PlayerController.jsx'
 import * as Shape from './components/SimpleShapes.jsx'
 
-import "./overlay.css"
+import "./css/overlay.css"
 
 const Workspace = () => (
     <group position={[2, 3, 0]}>
@@ -45,7 +45,7 @@ const Overlay = () => (
             style={{
             position: "absolute",
             left: "50%",
-            top: "60px"
+            top: "55px"
         }}>
             <nav
                 className="nav"
@@ -153,7 +153,7 @@ export default function App() {
                     </Suspense>
 
                     <EffectComposer>
-                        <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.9} height={300}/>
+                        <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300}/>
                         <Vignette eskil={false} offset={0.1} darkness={0.5}/>
                     </EffectComposer>
 

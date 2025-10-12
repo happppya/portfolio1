@@ -130,7 +130,6 @@ export const TrailEffect = ({ref}) => {
 
             const offset = new Vector3(Math.random()-0.5,0.8,Math.random()-0.5);
             
-            console.log("here");
             for (let i = 0; i < particles.length; i++) {
 
                 if (particles[i].life <= 1) continue;
