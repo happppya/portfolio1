@@ -12,12 +12,12 @@ const Character = () => {
 
     const pearto = useFBX('models/pearto.fbx')
 
-    const box = new THREE
+    /*const box = new THREE
         .Box3()
         .setFromObject(pearto);
     const size = new THREE.Vector3();
     box.getSize(size);
-    console.log('Model size:', size);
+    console.log('Model size:', size);*/
 
     pearto.rotation.y = Math.PI / 2;
 
@@ -107,7 +107,6 @@ export function Player({orbitRef}) {
         if (currentInput.jump && onGround.current) { // jumping
             newYVelocity = jumpPower;
             jumpEffect.current.play();
-            console.log(jumpEffect);
         }
 
         const newCharacterVelocity = {
@@ -155,6 +154,7 @@ export function Player({orbitRef}) {
         bob -= 0.32;
 
         character.current.position.y = bob;
+        character.current.position.z = 0.3;
         character.current.rotation.z = tilt;
         // camera
 

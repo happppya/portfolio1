@@ -15,10 +15,12 @@ import {Physics, RigidBody} from '@react-three/rapier'
 import {useControls} from 'leva'
 
 import {Bloom, Scanline, EffectComposer, Noise, Vignette} from '@react-three/postprocessing'
-import { BlendFunction } from 'postprocessing'
+import {BlendFunction} from 'postprocessing'
 
 import {Player} from './systems/PlayerController.jsx'
 import * as Shape from './components/SimpleShapes.jsx'
+
+import "./overlay.css"
 
 const Workspace = () => (
     <group position={[2, 3, 0]}>
@@ -39,13 +41,24 @@ const Overlay = () => (
             <p>FULL STACK DEVELOPER</p>
             <p>& GAME DESIGNER</p>
         </div>
+        <div
+            style={{
+            position: "absolute",
+            left: "50%",
+            top: "60px"
+        }}>
+            <nav
+                className="nav"
+                style={{
+                position: "relative",
+                left: "-50%"
+            }}>
+                <button className="nav-btn">Explore</button>
+                <button className="nav-btn">Work</button>
+                <button className="nav-btn">About</button>
+            </nav>
 
-        <nav className="nav">
-            <button className="nav-btn">Explore</button>
-            <button className="nav-btn">About</button>
-            <button className="nav-btn">Services</button>
-            <button className="nav-btn">Contact</button>
-        </nav>
+        </div>
 
     </div>
 )
@@ -118,18 +131,24 @@ export default function App() {
                             <Cloud seed={10} bounds={50} volume={80} position={[-40, 70, -80]}/>
                         </Clouds>
                         <Environment preset="city"/>
-                        <Sky 
-                          mieCoefficient={0.005}
-                          mieDirectionalG={0.03}
-                          turbidity={1}
-                          rayleigh={0.2}
-                        />
+                        <Sky
+                            mieCoefficient={0.005}
+                            mieDirectionalG={0.03}
+                            turbidity={1}
+                            rayleigh={0.2}/>
                         <Physics debug={debug} colliders={false} gravity={[0, -20, 0]}>
                             <Workspace/>
                             <Player orbitRef={orbitRef}/>
                         </Physics>
-                        <OrbitControls ref={orbitRef} enableRotate={true} enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 6} // optional tilt limits
-                            maxPolarAngle={Math.PI / 2} rotateSpeed={2} autoRotate={false}/>
+                        <OrbitControls
+                            ref={orbitRef}
+                            enableRotate={true}
+                            enablePan={false}
+                            enableZoom={false}
+                            minPolarAngle={0}
+                            maxPolarAngle={Math.PI / 2}
+                            rotateSpeed={4}
+                            autoRotate={false}/>
 
                     </Suspense>
 

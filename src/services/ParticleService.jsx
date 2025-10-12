@@ -2,7 +2,7 @@ import {useFrame} from "@react-three/fiber";
 import {useRef, useMemo, useImperativeHandle} from "react";
 import {Object3D, Vector3} from "three";
 
-const particleCount = 40;
+const particleCount = 30;
 
 function getMovement() {
 
