@@ -4,7 +4,7 @@ import {Object3D, Vector3} from "three";
 
 function getRandomMovement() {
 
-    const downwardVelocity = 0.01 + Math.random() * 0.1;
+    const downwardVelocity = 0.015 + Math.random() * 0.11;
 
     const velocity = new Vector3(0, -downwardVelocity, 0);
 
@@ -50,7 +50,7 @@ export const JumpEffect = ({ref}) => {
                 .setMatrixAt(i, dummy.matrix);
 
             life.current += delta;
-            mesh.current.material.opacity = Math.max(0.5 - life.current / 20, 0);
+            mesh.current.material.opacity = Math.max(0.2 - life.current / 25, 0);
 
         });
 
@@ -81,7 +81,7 @@ export const JumpEffect = ({ref}) => {
                 color="#ffffff"
                 roughness={0.5}
                 transparent
-                opacity={0.2}/>d
+                opacity={0}/>
         </instancedMesh>
     );
 };

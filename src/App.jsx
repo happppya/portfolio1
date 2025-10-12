@@ -90,7 +90,7 @@ export default function App() {
             <KeyboardControls map={keyboardMap}>
 
                 <Canvas
-                    shadows
+                    shadows={"variance"}
                     camera={{
                     position: [
                         0, 10, 10
@@ -108,7 +108,7 @@ export default function App() {
                             castShadow
                             decay={0}
                             color="white"
-                            position={[30, 30, 10]}
+                            position={[20, 30, 10]}
                             intensity={4}
                             shadow-mapSize-width={2048}
                             shadow-mapSize-height={2048}
