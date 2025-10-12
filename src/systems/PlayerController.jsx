@@ -6,7 +6,7 @@ import {useFBX, useKeyboardControls} from '@react-three/drei'
 import {useEffect} from 'react'
 import {clamp, lerp} from 'three/src/math/MathUtils.js'
 
-import { JumpEffect, TrailEffect } from '../services/ParticleService'
+import {JumpEffect, TrailEffect} from '../services/ParticleService'
 
 const Character = () => {
 
@@ -20,6 +20,20 @@ const Character = () => {
     console.log('Model size:', size);*/
 
     pearto.rotation.y = Math.PI / 2;
+
+    // enable shadows for every mesh in the model
+    useEffect(() => {
+        pearto.traverse((child) => {
+            if (child.isMesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+                // Ensure material supports lighting
+                if (child.material) {
+                    child.material.shadowSide = THREE.FrontSide
+                }
+            }
+        })
+    }, [pearto])
 
     return (<primitive object={pearto} scale={0.017}/>)
 
@@ -111,7 +125,9 @@ export function Player({orbitRef}) {
 
         if (currentInput.jump && onGround.current) { // jumping
             newYVelocity = jumpPower;
-            jumpEffect.current.play();
+            jumpEffect
+                .current
+                .play();
         }
 
         const newCharacterVelocity = {
@@ -143,7 +159,7 @@ export function Player({orbitRef}) {
             // proc walk animation
 
         }
-        
+
         let bob;
         let tilt;
 
@@ -175,53 +191,53 @@ export function Player({orbitRef}) {
         orbitControls.update();
 
         offset.subVectors(camera.position, orbitControls.target);
-        
+
         // walk trail
         if (onGround.current && isInputtingWalk && (totalTime.current - lastTrailEffectTime.current) > 0.1) {
             lastTrailEffectTime.current = totalTime.current;
-            trailEffect.current.play(position);
+            trailEffect
+                .current
+                .play(position);
         }
-        
+
         // debug
 
-        if (ticks % 30 == 0) {
-            
-        }
+        if (ticks % 30 == 0) {}
 
     })
 
     return (
         <group>
-        <RigidBody
-            ref={rigidBody}
-            type="dynamic"
-            colliders="cuboid"
-            mass={5}
-            restitution={0}
-            friction={0}
-            position={[0, 8, 0]}
-            onCollisionEnter={(e) => {
-            if (e.other.rigidBodyObject
-                ?.name == "ground") {
-                onGround.current = true;
-            }
-        }}
-            onCollisionExit={(e) => {
-            if (e.other.rigidBodyObject
-                ?.name == "ground") {
-                onGround.current = false;
-            }
-        }}>
-            <group ref={container}>
-                <group ref={character}>
-                    <Character/>
-                    <JumpEffect ref={jumpEffect}/>
+            <RigidBody
+                ref={rigidBody}
+                type="dynamic"
+                colliders="cuboid"
+                mass={5}
+                restitution={0}
+                friction={0}
+                position={[0, 8, 0]}
+                onCollisionEnter={(e) => {
+                if (e.other.rigidBodyObject
+                    ?.name == "ground") {
+                    onGround.current = true;
+                }
+            }}
+                onCollisionExit={(e) => {
+                if (e.other.rigidBodyObject
+                    ?.name == "ground") {
+                    onGround.current = false;
+                }
+            }}>
+                <group ref={container}>
+                    <group ref={character}>
+                        <Character/>
+                        <JumpEffect ref={jumpEffect}/>
+                    </group>
+
                 </group>
-                
-            </group>
-            
-        </RigidBody>
-        <TrailEffect ref = {trailEffect}/>
+
+            </RigidBody>
+            <TrailEffect ref={trailEffect}/>
         </group>
     )
 }

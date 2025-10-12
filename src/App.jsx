@@ -18,20 +18,9 @@ import {Bloom, Scanline, EffectComposer, Noise, Vignette} from '@react-three/pos
 import {BlendFunction} from 'postprocessing'
 
 import {Player} from './systems/PlayerController.jsx'
-import * as Shape from './components/SimpleShapes.jsx'
+import {Workspace} from './components/Workspace.jsx'
 
 import "./css/overlay.css"
-
-const Workspace = () => (
-    <group position={[2, 3, 0]}>
-        <Shape.Baseplate/>
-        <Shape.Sphere position={[-12, 13, 0]}/>
-        <Shape.Sphere position={[-9, 13, 0]}/>
-        <Shape.Sphere position={[-6, 13, 0]}/>
-
-        <Shape.Rect position={[0, 5, 10]} size={[16, 9, 1]}/>
-    </group>
-)
 
 const Overlay = () => (
     <div className="overlay">
@@ -114,18 +103,23 @@ export default function App() {
 
                         <hemisphereLight intensity={0.45 * Math.PI}/>
 
-                        <spotLight
-                            decay={0}
-                            angle={0.4}
-                            penumbra={1}
-                            position={[20, 30, 2.5]}
-                            castShadow
-                            shadow-bias={-0.00001}/>
+                  
                         <directionalLight
+                            castShadow
                             decay={0}
                             color="white"
-                            position={[-10, 50, 0]}
-                            intensity={1.5}/>
+                            position={[30, 30, 10]}
+                            intensity={4}
+                            shadow-mapSize-width={2048}
+                            shadow-mapSize-height={2048}
+                            shadow-camera-near={0.5}
+                            shadow-camera-far={500}
+                            shadow-bias={-0.002}
+                            shadow-camera-top={300}
+                            shadow-camera-bottom={-300}
+                            shadow-camera-left={-300}
+                            shadow-camera-right={300}
+                            />
                         <Clouds material={THREE.MeshBasicMaterial}>
                             <Cloud seed={10} bounds={50} volume={80} position={[40, 60, -80]}/>
                             <Cloud seed={10} bounds={50} volume={80} position={[-40, 70, -80]}/>
@@ -149,13 +143,11 @@ export default function App() {
                             maxPolarAngle={Math.PI / 2}
                             rotateSpeed={4}
                             autoRotate={false}/>
-
+                        <EffectComposer>
+                            <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300}/>
+                            <Vignette eskil={false} offset={0.1} darkness={0.5}/>
+                        </EffectComposer>
                     </Suspense>
-
-                    <EffectComposer>
-                        <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300}/>
-                        <Vignette eskil={false} offset={0.1} darkness={0.5}/>
-                    </EffectComposer>
 
                 </Canvas>
 
