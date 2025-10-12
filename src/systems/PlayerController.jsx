@@ -3,10 +3,10 @@ import {RigidBody} from '@react-three/rapier'
 import {useFrame, useLoader} from '@react-three/fiber'
 import * as THREE from 'three'
 import {useFBX, useKeyboardControls} from '@react-three/drei'
-import {getByteBoundaryFromType} from 'three/src/nodes/core/NodeUtils.js'
 import {useEffect} from 'react'
 import {clamp, lerp} from 'three/src/math/MathUtils.js'
-import {useState} from 'react'
+
+import { Emitter } from '../services/ParticleService'
 
 const Character = () => {
 
@@ -199,6 +199,7 @@ export function Player({orbitRef}) {
             <group ref={container}>
                 <group ref={character}>
                     <Character/>
+                    <Emitter/>
                 </group>
             </group>
         </RigidBody>
