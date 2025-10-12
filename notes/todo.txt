@@ -10,3 +10,6 @@ todo
 
 todo credits
 This work is based on "Lowpoly Pearto" (https://sketchfab.com/3d-models/lowpoly-pearto-c3a90b49a79142c4a0b2d56da0140e3a) by Pagodnik (https://sketchfab.com/pagodnik) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+inspiration https://rogierdeboeve.com/about
+inspiration https://samsy.ninja
