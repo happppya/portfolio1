@@ -6,7 +6,7 @@ import {useFBX, useKeyboardControls} from '@react-three/drei'
 import {useEffect} from 'react'
 import {clamp, lerp} from 'three/src/math/MathUtils.js'
 
-import { Emitter } from '../services/ParticleService'
+import { JumpEffect } from '../services/ParticleService'
 
 const Character = () => {
 
@@ -30,6 +30,8 @@ export function Player({orbitRef}) {
     const rigidBody = useRef();
     const container = useRef();
     const character = useRef();
+
+    const jumpEffect = useRef();
 
     const offset = new THREE.Vector3(-5, 10, 0);
     const dampingSpeed = 20;
@@ -104,6 +106,8 @@ export function Player({orbitRef}) {
 
         if (currentInput.jump && onGround.current) { // jumping
             newYVelocity = jumpPower;
+            jumpEffect.current.play();
+            console.log(jumpEffect);
         }
 
         const newCharacterVelocity = {
@@ -199,7 +203,7 @@ export function Player({orbitRef}) {
             <group ref={container}>
                 <group ref={character}>
                     <Character/>
-                    <Emitter/>
+                    <JumpEffect ref={jumpEffect}/>
                 </group>
             </group>
         </RigidBody>
