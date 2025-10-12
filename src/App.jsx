@@ -108,7 +108,7 @@ export default function App() {
                     ],
                     fov: 50
                 }}>
-                    <fogExp2 attach="fog" args={['#639ec2ff', 0.003]}/>
+                    <fogExp2 attach="fog" args={['#5e9abeff', 0.003]}/>
 
                     <Suspense fallback={null}>
 

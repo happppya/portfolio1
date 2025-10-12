@@ -6,7 +6,7 @@ import {useFBX, useKeyboardControls} from '@react-three/drei'
 import {useEffect} from 'react'
 import {clamp, lerp} from 'three/src/math/MathUtils.js'
 
-import { JumpEffect } from '../services/ParticleService'
+import { JumpEffect, TrailEffect } from '../services/ParticleService'
 
 const Character = () => {
 
@@ -32,6 +32,7 @@ export function Player({orbitRef}) {
     const character = useRef();
 
     const jumpEffect = useRef();
+    const trailEffect = useRef();
 
     const offset = new THREE.Vector3(-5, 10, 0);
     const dampingSpeed = 20;
@@ -41,7 +42,10 @@ export function Player({orbitRef}) {
     const jumpPower = 10;
     const onGround = useRef(true);
 
+    const totalTime = useRef(0);
     const walkTime = useRef(0);
+
+    const lastTrailEffectTime = useRef(0);
 
     const [,
         getInput] = useKeyboardControls();
@@ -54,6 +58,7 @@ export function Player({orbitRef}) {
     }, delta) => {
 
         ticks += 1;
+        totalTime.current += delta;
 
         const orbitControls = orbitRef.current;
         const body = rigidBody.current;
@@ -170,16 +175,25 @@ export function Player({orbitRef}) {
         orbitControls.update();
 
         offset.subVectors(camera.position, orbitControls.target);
-
+        
+        // walk trail
+        if (onGround.current && isInputtingWalk && (totalTime.current - lastTrailEffectTime.current) > 0.1) {
+            lastTrailEffectTime.current = totalTime.current;
+            trailEffect.current.play(position);
+        }
+        
         // debug
 
         if (ticks % 30 == 0) {
-            //console.log(currentCharacterVelocity.y);
+            //console.log(currentCharacterVelocity.y)
+            //          console.log(totalTime, )
+            console.log(lastTrailEffectTime.current)
         }
 
     })
 
     return (
+        <group>
         <RigidBody
             ref={rigidBody}
             type="dynamic"
@@ -205,7 +219,11 @@ export function Player({orbitRef}) {
                     <Character/>
                     <JumpEffect ref={jumpEffect}/>
                 </group>
+                
             </group>
+            
         </RigidBody>
+        <TrailEffect ref = {trailEffect}/>
+        </group>
     )
 }
