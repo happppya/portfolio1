@@ -1,14 +1,12 @@
 import {useState} from "react";
 import * as StateService from "../services/StateService"
 
-export const Overlay = () => {
+export const GlobalOverlay = () => {
 
-    const [active,
-        setActive] = useState("Explore");
+    const StateManager = StateService.useStateManager();
 
     const handleClick = (name) => {
-        StateService.setState(name);
-        setActive(name);
+        StateManager.setState(name);
     };
 
     return (
@@ -32,21 +30,21 @@ export const Overlay = () => {
                     left: "-50%"
                 }}>
                     <button
-                        className={`nav-btn ${active === StateService.States.EXPLORE
+                        className={`nav-btn ${StateManager.state === StateService.States.EXPLORE
                         ? "selected"
                         : ""}`}
                         onClick={() => handleClick(StateService.States.EXPLORE)}>
                         Explore
                     </button>
                     <button
-                        className={`nav-btn ${active === StateService.States.WORK
+                        className={`nav-btn ${StateManager.state === StateService.States.WORK
                         ? "selected"
                         : ""}`}
                         onClick={() => handleClick(StateService.States.WORK)}>
                         Work
                     </button>
                     <button
-                        className={`nav-btn ${active === StateService.States.ABOUT
+                        className={`nav-btn ${StateManager.state === StateService.States.ABOUT
                         ? "selected"
                         : ""}`}
                         onClick={() => handleClick(StateService.States.ABOUT)}>

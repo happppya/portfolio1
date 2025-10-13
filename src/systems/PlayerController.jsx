@@ -42,6 +42,8 @@ const Character = () => {
 
 export function Player({orbitRef}) {
 
+    const StateManager = StateService.useStateManager();
+
     const rigidBody = useRef();
     const container = useRef();
     const character = useRef();
@@ -72,7 +74,7 @@ export function Player({orbitRef}) {
         camera
     }, delta) => {
 
-        if (StateService.getState() != StateService.States.EXPLORE) return;
+        if (StateManager.state != StateService.States.EXPLORE) return;
 
         ticks += 1;
         totalTime.current += delta;
