@@ -5,9 +5,7 @@ import {Object3D, Vector3} from "three";
 function getRandomMovement() {
 
     const downwardVelocity = 0.015 + Math.random() * 0.11;
-
     const velocity = new Vector3(0, -downwardVelocity, 0);
-
     const position = new Vector3((Math.random() - 0.5) * 0.8, -0.5, (Math.random() - 0.5) * 0.8);
 
     return {velocity, position}
@@ -77,11 +75,7 @@ export const JumpEffect = ({ref}) => {
     return (
         <instancedMesh ref={mesh} args={[null, null, particleCount]}>
             <boxGeometry args={[0.02, 0.5, 0.02]}/>
-            <meshStandardMaterial
-                color="#ffffff"
-                roughness={0.5}
-                transparent
-                opacity={0}/>
+            <meshStandardMaterial color="#ffffff" roughness={0.5} transparent opacity={0}/>
         </instancedMesh>
     );
 };
@@ -128,13 +122,16 @@ export const TrailEffect = ({ref}) => {
     useImperativeHandle(ref, () => ({
         play(playerPosition) {
 
-            const offset = new Vector3(Math.random()-0.5,0.8,Math.random()-0.5);
-            
+            const offset = new Vector3(Math.random() - 0.5, 0.8, Math.random() - 0.5);
+
             for (let i = 0; i < particles.length; i++) {
 
-                if (particles[i].life <= 1) continue;
+                if (particles[i].life <= 1) 
+                    continue;
                 
-                particles[i].position.subVectors(playerPosition, offset)
+                particles[i]
+                    .position
+                    .subVectors(playerPosition, offset)
                 particles[i].life = 0;
 
                 break;
@@ -144,14 +141,16 @@ export const TrailEffect = ({ref}) => {
     }))
 
     return (
-        <instancedMesh ref={mesh} args={[null, null, particleCount]} frustumCulled={false}>
+        <instancedMesh
+            ref={mesh}
+            args={[null, null, particleCount]}
+            frustumCulled={false}>
             <dodecahedronGeometry args={[0.25, 0]}/>
             <meshStandardMaterial
                 color="#ffffff"
                 roughness={0.5}
                 transparent
-                opacity={0.2}
-                />
+                opacity={0.2}/>
         </instancedMesh>
     );
 

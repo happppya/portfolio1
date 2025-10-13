@@ -7,6 +7,7 @@ import {useEffect} from 'react'
 import {clamp, lerp} from 'three/src/math/MathUtils.js'
 
 import {JumpEffect, TrailEffect} from '../services/ParticleService'
+import * as StateService from '../services/StateService'
 
 const Character = () => {
 
@@ -70,6 +71,8 @@ export function Player({orbitRef}) {
     useFrame(({
         camera
     }, delta) => {
+
+        if (StateService.getState() != StateService.States.EXPLORE) return;
 
         ticks += 1;
         totalTime.current += delta;
@@ -202,7 +205,9 @@ export function Player({orbitRef}) {
 
         // debug
 
-        if (ticks % 30 == 0) {}
+        if (ticks % 30 == 0) {
+            //console.log(camera);
+        }
 
     })
 

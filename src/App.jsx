@@ -9,7 +9,8 @@ import {
     Clouds,
     Cloud,
     KeyboardControls,
-    OrthographicCamera
+    OrthographicCamera,
+    Stats
 } from '@react-three/drei'
 import {Physics, RigidBody} from '@react-three/rapier'
 import {useControls} from 'leva'
@@ -19,38 +20,10 @@ import {BlendFunction} from 'postprocessing'
 
 import {Player} from './systems/PlayerController.jsx'
 import {Workspace} from './components/Workspace.jsx'
+import {Overlay} from './components/Overlay.jsx'
+import * as StateService from './services/StateService.jsx'
 
 import "./css/overlay.css"
-
-const Overlay = () => (
-    <div className="overlay">
-
-        <div className="corner">
-            <h2>alexander</h2>
-            <p>FULL STACK DEVELOPER</p>
-            <p>& GAME DESIGNER</p>
-        </div>
-        <div
-            style={{
-            position: "absolute",
-            left: "50%",
-            top: "55px"
-        }}>
-            <nav
-                className="nav"
-                style={{
-                position: "relative",
-                left: "-50%"
-            }}>
-                <button className="nav-btn">Explore</button>
-                <button className="nav-btn">Work</button>
-                <button className="nav-btn">About</button>
-            </nav>
-
-        </div>
-
-    </div>
-)
 
 export default function App() {
 
@@ -79,6 +52,8 @@ export default function App() {
         }
     ];
 
+    StateService.setState(StateService.States.EXPLORE);
+
     return (
         <div
             style={{
@@ -103,7 +78,6 @@ export default function App() {
 
                         <hemisphereLight intensity={0.45 * Math.PI}/>
 
-                  
                         <directionalLight
                             castShadow
                             decay={0}
@@ -118,8 +92,7 @@ export default function App() {
                             shadow-camera-top={300}
                             shadow-camera-bottom={-300}
                             shadow-camera-left={-300}
-                            shadow-camera-right={300}
-                            />
+                            shadow-camera-right={300}/>
                         <Clouds material={THREE.MeshBasicMaterial}>
                             <Cloud seed={10} bounds={50} volume={80} position={[40, 60, -80]}/>
                             <Cloud seed={10} bounds={50} volume={80} position={[-40, 70, -80]}/>
