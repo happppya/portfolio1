@@ -4,6 +4,18 @@ bugs
 
 todo
 
+- camera positions
+about
+rotation
+_x -2.1634764109144866
+_y -1.400909854032283
+_z -2.1702129607475174
+
+position
+x -44.90397749851044
+y 6.5671435140459735
+z -18.76403227456107
+
 - inverted color text -- difficult to align with html
 
 - jump detection with collision, naming ground with ground -- DONE

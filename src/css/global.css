@@ -1,3 +1,19 @@
+.overlay {
+    position: absolute;
+    /* relative to the parent div */
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    /* center vertically */
+    left: 50%;
+    /* center horizontally */
+    transform: translate(-50%, -50%);
+    /* actually center the element */
+    pointer-events: none;
+    /* optional: allows clicking through the overlay */
+    padding: 40px;
+}
+
 .fade-up {
     transform: translateY(20px);
     animation: fadeUp 0.8s ease-out forwards;

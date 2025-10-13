@@ -3,6 +3,7 @@ import {Canvas, useFrame} from '@react-three/fiber'
 import {KeyboardControls} from '@react-three/drei'
 
 import {GlobalOverlay} from './components/GlobalOverlay.jsx'
+import {ConditionalOverlay} from './components/ConditionalOverlay/ConditionalOverlay.jsx'
 import {Experience} from './components/Experience.jsx'
 import * as StateService from './services/StateService.jsx'
 
@@ -59,7 +60,13 @@ export default function App() {
 
                 </KeyboardControls>
 
-                <GlobalOverlay/>
+                <div className="overlay">
+
+                    <ConditionalOverlay/>
+                    <GlobalOverlay/>
+
+                </div>
+
             </StateService.StateProvider>
 
         </div>
