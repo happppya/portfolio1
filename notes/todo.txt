@@ -3,9 +3,11 @@ bugs
 - focus border when click and drag on a button
 
 todo
-- inverted color text
-- jump detection with collision, naming ground with ground
-- animate player
+
+- inverted color text -- difficult to align with html
+
+- jump detection with collision, naming ground with ground -- DONE
+- animate player -- DONE
 - player 3d model -- DONE
 
 info
@@ -16,6 +18,6 @@ todo credits
 This work is based on "Lowpoly Pearto" (https://sketchfab.com/3d-models/lowpoly-pearto-c3a90b49a79142c4a0b2d56da0140e3a) by Pagodnik (https://sketchfab.com/pagodnik) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 
 inspiration https://rogierdeboeve.com/about
-inspiration https://samsy.ninja
+inspiration https://samsy.d
 
 inspiration https://muz.li/blog/top-100-most-creative-and-unique-portfolio-websites-of-2024
