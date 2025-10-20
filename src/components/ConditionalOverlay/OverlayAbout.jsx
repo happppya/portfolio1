@@ -1,23 +1,33 @@
-import * as StateService from "../../services/StateService"
-import {useEffect} from "react"
+import * as StateService from '../../services/StateService'
+import { useEffect } from 'react'
 
 export const OverlayAbout = () => {
+  const { state } = StateService.useStateManager()
 
-    const {state} = StateService.useStateManager();
+  useEffect(() => {
+    if (state !== StateService.States.ABOUT) return
+  }, [state])
 
-    useEffect(() => {
-        if (state !== StateService.States.ABOUT) 
-            return;
-        }
-    , [state])
+  if (state !== StateService.States.ABOUT) return null
 
-    if (state !== StateService.States.ABOUT) 
-        return null;
-    
-    return (
-        <div className="corner">
-            <h2>about</h2>
-        </div>
-    )
+  return (
+    <div className="corner">
+      <h2>alexander</h2>
 
+      <div style={{ width: '33%' }}>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
+          not only five centuries, but also th
+        </p>
+        <br />
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
+          not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+          1960s with the release of Let
+        </p>
+      </div>
+    </div>
+  )
 }
